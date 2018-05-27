@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="Mixed_Initiative_Exp1_v0._1.Table_ManualMessages"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mixed_Initiative_Exp1_v0._1"
+             mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1300">
+
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="BorderBrush" Value="#FFE7E7E7" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="BorderBrush" Value="Plum" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </Trigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="{x:Type CheckBox}" TargetType="{x:Type CheckBox}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Border x:Name="Border" 
+           Width="15" 
+           Height="15" 
+           CornerRadius="3" 
+           Background="Transparent"
+           BorderThickness="1"
+           BorderBrush="LightSlateGray">
+                                    <Path 
+            Width="15" Height="15" 
+            x:Name="CheckMark"
+            SnapsToDevicePixels="False" 
+            Stroke="CornflowerBlue"
+            StrokeThickness="1.7"
+            Data="M 1,5.8 
+L 2.5,6.1 
+L 5.4,9.0 
+L 10.1,1.7 
+L 11.9,1.4 
+L 5.6,11.5 
+Z" />
+                                </Border>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="4,0,0,0"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Left"
+          RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter TargetName="CheckMark" Property="Data" Value="M 3 3 L 10 10 M 3 10 L 10 3"/>
+                                <Setter TargetName="CheckMark" Property="Stroke" Value="LightGray"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="CheckMark" Property="Stroke" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="LightSteelBlue" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="#E0E0E0" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#606060" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA" />
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <DataGrid Name="DG1" ItemsSource="{Binding Path=LoadDataBinding_Manual}" 
+                  
+                  AutoGenerateColumns="False" Height="600" Width="1300" 
+                  SelectionChanged="DG1_SelectionChanged" 
+                  LoadingRow="dataGrid_LoadingRow" RowHeight="40"
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center" 
+                  HorizontalGridLinesBrush="#FFE5E5E5" VerticalGridLinesBrush="#FFE7E7E7" 
+                  FontSize="14.667" FontFamily="Leelawadee UI Semilight" BorderBrush="{x:Null}" Background="{x:Null}" Margin="0,0,150,0">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="No." Width="50" Binding="{Binding Path=id_manual_messages}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Time" Width="150" Binding="{Binding Path=time}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <!--The Email property contains a URI.  For example "mailto:lucy0@adventure-works.com"-->
+
+
+                <DataGridTextColumn Header="Content" Width="400" Binding="{Binding Path=content}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn x:Name="is_about_delivery" Header="Is this a delivery message?"  Width="180" Binding="{Binding Path=is_about_delivery}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Header="" Width="200">
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox  Name="theCheckBox" IsChecked="{Binding Path=is_about_delivery, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                       Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"
+                                       HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--
+                <DataGridTemplateColumn Header="Is Default" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="{Binding Path=id}" IsChecked="{Binding Path=bool, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+     -->
+                <!--  ItemsSource="{Binding Source={StaticResource myEnum}}" /> -->
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
+

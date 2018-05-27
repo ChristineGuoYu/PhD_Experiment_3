@@ -1,0 +1,80 @@
+﻿<Window x:Class="Mixed_Initiative_Exp1_v0._1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mixed_Initiative_Exp1_v0._1"
+        mc:Ignorable="d"
+        Title="Intelligent Database - Rainbow Research Group, University of Cambridge" 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" Icon="Images/Mails.png"  ResizeMode="CanMinimize" Height="900" Width="1400" >
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="321*"/>
+        </Grid.RowDefinitions>
+
+        <local:StatusBar x:Name="Status_Bar" Visibility="Hidden" Height="90" Margin="902,10,0,129.5"/>
+        <!--
+        <Label Name="New_Messages_label" Content="We have              new messages to process." FontSize="24" Margin="71,156,413,665.5" Visibility="Hidden"/>
+        <Label Name="New_Messages_num_label" Content="10" FontSize="40" Foreground="Red" HorizontalContentAlignment="Center" Margin="145,143,1153,668.5" Visibility="Hidden"/>
+-->
+        <Label Name="Unsure_Messages_label" Content="Please judge whether or not each of these                      messages is about 'delivery'." FontSize="24" Margin="34,166,136,13.5" Visibility="Hidden"/>
+        <Label Name="Unsure_Messages_num_label" Content="4" FontSize="40" Foreground="Red" HorizontalContentAlignment="Center" Margin="465,151,807,18.5" Visibility="Hidden"/>
+        <!--
+        <Label Name="Manual_Messages_label" Content="Please judge whether or not each of these                      messages is about 'delivery'." FontSize="24" Margin="36,166,134,655.5" Visibility="Hidden"/>
+        <Label Name="Manual_Messages_num_label" Content="5" FontSize="40" Foreground="Red" HorizontalContentAlignment="Center" Margin="475,151,789,660.5" Visibility="Hidden"/>
+-->
+
+        <Label Name="Archived_yes_Messages_label" Content="We have classified                      messages that are about 'delivery'." FontSize="24" Margin="38,166,241,13.5" Visibility="Hidden"/>
+        <Label Name="Archived_yes_Messages_num_label" Content="6" FontSize="40" Foreground="Red" HorizontalContentAlignment="Center" Margin="241,151,1057,18.5" Visibility="Hidden"/>
+
+
+        <Label Name="Archived_no_Messages_label" Content="We have classified                      messages that are not about 'delivery'." FontSize="24" Margin="38,166,241,13.5" Visibility="Hidden"/>
+        <Label Name="Archived_no_Messages_num_label" Content="8" FontSize="40"  Foreground="Red" HorizontalContentAlignment="Center" Margin="241,151,1057,18.5" Visibility="Hidden"/>
+
+
+
+        <!--
+        <local:Table_NewMessages x:Name="New_Messages" Visibility="Visible" Margin="32,216,42,155.5"/>
+        <local:Table_ManualMessages x:Name="Manual_Messages" Visibility="Hidden" Margin="6,240,68,131.5" Grid.Column="1"/>
+-->
+        <Label Name="updating_label" Content="Updating system formula..." Visibility="Hidden" FontSize="30" HorizontalAlignment="Center" Margin="515,10,515,551" Grid.Row="1" />
+        <local:Table_UnsureMessages x:Name="Unsure_Messages"  Visibility="Hidden" Margin="6,10.5,68,131.5" Grid.Row="1" />
+
+        <local:Table_Archived_yes_Messages x:Name="Archived_yes_Messages" Visibility="Hidden" Margin="6,10.5,68,131.5" Grid.Row="1"/>
+        <local:Table_Archived_no_messages x:Name="Archived_no_Messages" Visibility="Hidden" Margin="6,10.5,68,131.5" Grid.Row="1"/>
+
+        <!--     <Button Name="notification"  Content="Notification" Click="notification_Click" Margin="1067,166,203,24"  />
+        <Button Name="mySQL_cmd1" Content="mySQL_cmd1" Margin="32,10,1242,179.5" Click="mySQL_cmd1_Click"/>
+        <Button Name="mySQL_cmd2" Content="Pull new messages" Margin="241,12,1033,176.5" Click="mySQL_cmd2_Click"/>
+        <Button Name="mySQL_cmd3" Content="mySQL_cmd3" Margin="32,54,1242,135.5" Click="mySQL_cmd3_Click"/>
+        <Button Name="mySQL_cmd4" Content="Confirm and Archive" Margin="386,12,888,176.5" Click="mySQL_cmd4_Click"/>
+        <Button Name="mySQL_cmd5" Content="mySQL_cmd5" Margin="32,99,1242,90.5" Click="mySQL_cmd5_Click"/>
+        -->
+
+        <Button Name="Start_Rhythmic_Timer"  Visibility="Hidden" Height="150" Width="250" FontSize="25"   Content="Start Task 1" Click="Start_Rhythmic_Timer_Click"  ></Button>
+        <Button Name="Stop_Rhythmic_Timer"  Visibility="Hidden" Content="Stop Task 1" FontSize="15" Margin="1249,10,10,170" Height="50" Width="125"  Click="Stop_Rhythmic_Timer_Click"  />
+
+        <Button Name="Start_Random_Timer" Visibility="Hidden" Content="Start Task 2"  Height="150" Width="250" FontSize="25"  Click="Start_Random_Timer_Click" ></Button>
+        <Button Name="Stop_Random_Timer"  Visibility="Hidden" Content="Stop Task 2" FontSize="15" Margin="1249,10,10,170" Height="50" Width="125"  Click="Stop_Random_Timer_Click" ></Button>
+
+        <Button Name="Start_Manual" Visibility="Hidden" Content="Start Task 3" Height="150" Width="250" FontSize="25"  Click="Start_Manual_Click" ></Button>
+        <Button Name="Next_btn" Visibility="Hidden"  Content="Show Next" Width="250" Height="250" FontSize="25"  Margin="1379,57,-235,334"  Click="Next_btn_Click" Grid.Row="1" />
+
+        <Button Name="Start_Aligned_Timer" Visibility="Hidden" Content="Start Task 4"  Height="150" Width="250" FontSize="25" Click="Start_Aligned_Timer_Click" ></Button>
+        <Button Name="Stop_Aligned_Timer" Visibility="Hidden" Content="Stop Task 4" FontSize="15" Margin="1249,10,10,170" Height="50" Width="125"   Click="Stop_Aligned_Timer_Click" ></Button>
+
+
+        <Button Name="Task1Btn"  Content="Task 1" FontSize="40" Height="150" Width="250" Click="Task1Btn_Click" Grid.Row="1" Margin="38,126,1106,365" ></Button>
+        <Button Name="Task2Btn"  Content="Task 2" FontSize="40" Height="150" Width="250" Click="Task2Btn_Click" Grid.Row="1" Margin="381,126,763,365" ></Button>
+        <Button Name="Task3Btn"  Content="Task 3" FontSize="40" Height="150" Width="250" Click="Task3Btn_Click" Grid.Row="1" Margin="728,126,416,365" ></Button>
+        <Button Name="Task4Btn"  Content="Task 4" FontSize="40" Height="150" Width="250" Click="Task4Btn_Click" Grid.Row="1" Margin="1076,126,68,365" RenderTransformOrigin="1.115,-0.319" ></Button>
+        <local:TaskRatings x:Name="Task_Ratings" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden" ></local:TaskRatings>
+        <!--   <Button x:Name="Correct_btn" Content="Correct" HorizontalAlignment="Left" Margin="1182,99,0,0" VerticalAlignment="Top" Width="76" Height="36" Click="Correct_btn_Click"/>
+        <Button x:Name="Wrong_btn" Content="Wrong" HorizontalAlignment="Left" Margin="1276,99,0,0" VerticalAlignment="Top" Width="75" Height="36" Click="Wrong_btn_Click"/>
+        -->
+
+
+    </Grid>
+</Window>

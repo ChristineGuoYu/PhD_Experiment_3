@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Mixed_Initiative_Exp1_v0._1.TaskRatings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mixed_Initiative_Exp1_v0._1"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style x:Key="Simple" TargetType="{x:Type RepeatButton}">
+            <Setter Property = "Background" Value= "{DynamicResource 
+         {x:Static SystemColors.ControlLightBrushKey}}"/>
+            <Setter Property = "Foreground" Value= "{DynamicResource 
+         {x:Static SystemColors.ControlDarkBrushKey}}"/>
+            <Setter Property = "FontSize" Value= "14"/>
+        </Style>
+        <Style x:Key="MyCustomStyleForSlider" TargetType="{x:Type Slider}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Slider}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TickBar x:Name="TopTick" Visibility="Collapsed" Fill="{TemplateBinding Foreground}" Placement="Top" Height="4" Grid.Row="0"/>
+                                <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Placement="Bottom" Height="4" Grid.Row="0"/>
+                                <Border x:Name="TrackBackground"  BorderThickness="2" CornerRadius="2" Margin="5,0" VerticalAlignment="Center" Height="10.0" Grid.Row="1" >
+                                    <Canvas Margin="-6,-1">
+                                        <Rectangle Visibility="Hidden" x:Name="PART_SelectionRange" Height="4.0"
+                                            Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                            Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                                            StrokeThickness="1.0"/>
+                                    </Canvas>
+                                </Border>
+                                <Track x:Name="PART_Track" Grid.Row="1">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" BorderBrush="AliceBlue" />
+                                        <!--  Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" -->
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}"  BorderBrush="AliceBlue" 
+                                                                                                            
+        />
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb" Background="Black"/>
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Canvas x:Name="Labels" Width="800" Height="1000">
+            <Label x:Name="title" Content="How did you feel during this task?" 
+               FontSize="28"
+               HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.981,0.778" Canvas.Left="174"/>
+            <Label x:Name="neutral" Content="(neutral)" 
+               FontSize="12"
+               HorizontalAlignment="Center" Foreground="DarkGray" Canvas.Left="360" Canvas.Top="47"/>
+            <Label x:Name="neutral2" Content="(neutral)" 
+               FontSize="12"
+               HorizontalAlignment="Center" Foreground="DarkGray" Canvas.Left="360" Canvas.Top="372"/>
+
+            <Rectangle x:Name="neutralline" Width="2" Height="300" Opacity="0.2" Fill="Gray" Canvas.Left="387" Canvas.Top="78" />
+
+            <Rectangle x:Name="neutralline2" Width="2" Height="330" Opacity="0.2" Fill="Gray" Canvas.Left="387" Canvas.Top="424" />
+
+            <Label x:Name="r1_1" Canvas.Left="0" Margin="0,90,0,280" Content="The software adapted to me"></Label>
+            <Label x:Name="r1_2" Canvas.Right="0" Margin="0,90,0,280" Content="I adapted to the software"></Label>
+
+            <Label x:Name="r2_1" Canvas.Left="0" Margin="0,140,0,230" Content="I was controlling the pace"></Label>
+            <Label x:Name="r2_2" Canvas.Right="0"  Margin="0,140,0,230" Content="The software was controlling the pace"></Label>
+
+            <Label x:Name="r3_1" Canvas.Left="0" Margin="0,190,0,180" Content="The software intended to help me"></Label>
+            <Label x:Name="r3_2" Canvas.Right="0"  Margin="0,190,0,180" Content="The software intended to challenge me"></Label>
+
+            <Label x:Name="r4_1" Canvas.Left="0" Margin="0,240,0,130" Content="I felt relaxed during this task"></Label>
+            <Label x:Name="r4_2" Canvas.Right="0"  Margin="0,240,0,130" Content="I felt stressed during this task"></Label>
+
+            <Label x:Name="r5_1" Canvas.Left="0" Margin="0,290,0,80" Content="The interaction went smoothly"></Label>
+            <Label x:Name="r5_2" Canvas.Right="0"  Margin="0,290,0,80" Content="The interaction went roughly"></Label>
+
+            <Label x:Name="r6_1" Canvas.Left="0" Margin="0,340,0,30" Content="I felt confident in my answers"></Label>
+            <Label x:Name="r6_2" Canvas.Right="0"  Margin="0,340,0,30" Content="I felt unconfident in my answers"></Label>
+
+            <Label x:Name="tlx1_0" Canvas.Left="189"  Content="How mentally demanding was the task?" Canvas.Top="403"></Label>
+            <Label x:Name="tlx1_1" Canvas.Left="131"  Content="Very Low" Canvas.Top="428"></Label>
+            <Label x:Name="tlx1_2" Canvas.Right="0"   Content="Very High" Canvas.Left="590" Canvas.Top="428"></Label>
+
+            <Label x:Name="tlx2_0" Canvas.Left="188"  Content="How physically demanding was the task?" Canvas.Top="463"></Label>
+            <Label x:Name="tlx2_1" Canvas.Left="131"  Content="Very Low" Canvas.Top="488"></Label>
+            <Label x:Name="tlx2_2" Canvas.Right="0"   Content="Very High" Canvas.Left="590" Canvas.Top="488"></Label>
+
+            <Label x:Name="tlx3_0" Canvas.Left="188"  Content="How hurried or rushed was the pace of the task?" Canvas.Top="523"></Label>
+            <Label x:Name="tlx3_1" Canvas.Left="131"  Content="Very Low" Canvas.Top="548"></Label>
+            <Label x:Name="tlx3_2" Canvas.Right="0"   Content="Very High" Canvas.Left="590" Canvas.Top="548"></Label>
+
+            <Label x:Name="tlx4_0" Canvas.Left="188"  Content="How successful were you in accomplishing what you were asked to do?" Canvas.Top="583"></Label>
+            <Label x:Name="tlx4_1" Canvas.Left="131"  Content="Perfect" Canvas.Top="608"></Label>
+            <Label x:Name="tlx4_2" Canvas.Right="0"   Content="Failure" Canvas.Left="590" Canvas.Top="608"></Label>
+
+            <Label x:Name="tlx5_0" Canvas.Left="188"  Content="How hard did you have to work to accomplish your level of performance?" Canvas.Top="643"></Label>
+            <Label x:Name="tlx5_1" Canvas.Left="131"  Content="Very Low" Canvas.Top="668"></Label>
+            <Label x:Name="tlx5_2" Canvas.Right="0"   Content="Very High" Canvas.Left="590" Canvas.Top="668"></Label>
+
+            <Label x:Name="tlx6_0" Canvas.Left="188"  Content="How insecure, discouraged, irritated, stressed, and annoyed were you?" Canvas.Top="703"></Label>
+            <Label x:Name="tlx6_1" Canvas.Left="131"  Content="Very Low" Canvas.Top="728"></Label>
+            <Label x:Name="tlx6_2" Canvas.Right="0"   Content="Very High" Canvas.Left="590" Canvas.Top="728"></Label>
+
+            <Label x:Name="notice" Canvas.Right="0"   Content="Just to make sure - check your ratings then submit!" Canvas.Left="131" Canvas.Top="780" 
+                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                   FontSize="20" Background="Black" Foreground="Yellow" Width="539" Visibility="Hidden" ></Label>
+
+            <Slider x:Name="sld1" Height="20"  ValueChanged="sld1_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="50" Maximum="100" Minimum="0" Width="390" Canvas.Left="192" Canvas.Top="95" />
+            <Slider x:Name="sld2" Height="20" ValueChanged="sld2_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="50" Maximum="100" Minimum="0" Width="390" Canvas.Left="192" Canvas.Top="145"/>
+            <Slider x:Name="sld3" Height="20" ValueChanged="sld3_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="50" Maximum="100" Minimum="0" Width="390" Canvas.Left="192" Canvas.Top="195"/>
+            <Slider x:Name="sld4" Height="20" ValueChanged="sld4_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="50" Maximum="100" Minimum="0" Width="390" Canvas.Left="192" Canvas.Top="245"/>
+            <Slider x:Name="sld5" Height="20"  ValueChanged="sld5_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="50" Maximum="100" Minimum="0" Width="390" Canvas.Left="192" Canvas.Top="295"/>
+            <Slider x:Name="sld6" Height="20" ValueChanged="sld6_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="50" Maximum="100" Minimum="0" Width="390" Canvas.Left="192" Canvas.Top="345"/>
+
+            <Slider x:Name="sld_tlx_1" Height="20" ValueChanged="sld_tlx_1_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="11" Maximum="21" Minimum="1" Width="390" Canvas.Left="192" Canvas.Top="433"/>
+            <Slider x:Name="sld_tlx_2" Height="20"  ValueChanged="sld_tlx_2_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="11" Maximum="21" Minimum="1" Width="390" Canvas.Left="192" Canvas.Top="493"/>
+            <Slider x:Name="sld_tlx_3" Height="20"  ValueChanged="sld_tlx_3_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="11" Maximum="21" Minimum="1" Width="390" Canvas.Left="192" Canvas.Top="553"/>
+            <Slider x:Name="sld_tlx_4" Height="20"  ValueChanged="sld_tlx_4_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="11" Maximum="21" Minimum="1" Width="390" Canvas.Left="192" Canvas.Top="613"/>
+            <Slider x:Name="sld_tlx_5" Height="20"  ValueChanged="sld_tlx_5_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="11" Maximum="21" Minimum="1" Width="390" Canvas.Left="192" Canvas.Top="673"/>
+            <Slider x:Name="sld_tlx_6" Height="20"  ValueChanged="sld_tlx_6_ValueChanged" IsMoveToPointEnabled="True" IsSnapToTickEnabled ="True"
+                Style="{StaticResource MyCustomStyleForSlider}"
+                Value="11" Maximum="21" Minimum="1" Width="390" Canvas.Left="192" Canvas.Top="733"/>
+
+
+            <Button x:Name="submit" Height="40" Width="80" Content="Done" FontSize="16" Click="submit_Click" Canvas.Left="348" Canvas.Top="817" ></Button>
+
+        </Canvas>
+
+
+    </Grid>
+</UserControl>
